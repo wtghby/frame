@@ -1,8 +1,10 @@
 package com.conny.frame;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.conny.frame.test.FrameApi;
 import com.conny.frame.material.BaseActivity;
 import com.conny.frame.test.IpBean;
@@ -17,8 +19,11 @@ public class MainActivity extends BaseActivity {
 
     @BindView(R.id.text)
     TextView mText;
+    @BindView(R.id.image)
+    ImageView mImage;
 
     private final String URL = "http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json";
+    private final String PIC = "http://inthecheesefactory.com/uploads/source/glidepicasso/cover.jpg";
 
     @Override
     protected void initLayout() {
@@ -28,6 +33,9 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initData() {
         mText.setText("hhhhhhhhhhhhh");
+        Glide.with(this)
+                .load(PIC)
+                .into(mImage);
     }
 
     @OnClick({R.id.click})
