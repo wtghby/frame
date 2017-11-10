@@ -1,5 +1,6 @@
 package com.conny.frame;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -8,6 +9,7 @@ import com.bumptech.glide.Glide;
 import com.conny.frame.test.FrameApi;
 import com.conny.frame.material.BaseActivity;
 import com.conny.frame.test.IpBean;
+import com.conny.frame.test.PullToRefreshSwipeListActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -42,9 +44,15 @@ public class MainActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.click:
-                req();
+//                req();
+                pull();
                 break;
         }
+    }
+
+    private void pull() {
+        Intent intent = new Intent(this, PullToRefreshSwipeListActivity.class);
+        startActivity(intent);
     }
 
     private void req() {
