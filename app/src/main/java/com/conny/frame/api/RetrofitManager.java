@@ -19,7 +19,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitManager {
 
     public static Retrofit getRetrofit() {
-
         return new Retrofit.Builder()
                 .baseUrl(ApiManager.SERVER)
                 .addConverterFactory(GsonConverterFactory.create(new Gson()))
