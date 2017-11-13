@@ -45,9 +45,15 @@ public class MainActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.click:
 //                req();
-                pull();
+//                pull();
+//                showDialog();
+                showProgress(true);
                 break;
         }
+    }
+
+    private void showDialog() {
+//        LoadingUtils.show(this);
     }
 
     private void pull() {
