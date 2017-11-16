@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.conny.frame.material.dialog.CommonDialog;
 import com.conny.frame.test.FrameApi;
 import com.conny.frame.material.BaseActivity;
 import com.conny.frame.test.IpBean;
@@ -46,14 +47,30 @@ public class MainActivity extends BaseActivity {
             case R.id.click:
 //                req();
 //                pull();
-//                showDialog();
-                showProgress(true);
+                showDialog();
+//                showProgress(true);
                 break;
         }
     }
 
     private void showDialog() {
 //        LoadingUtils.show(this);
+        final CommonDialog dialog = new CommonDialog(this, "dasdsdasssd", "title");
+        dialog.setNegativeButton(R.string.yes, new CommonDialog.DialogOnClickListener() {
+            @Override
+            public void onClick() {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.setPositiveButton(R.string.no, new CommonDialog.DialogOnClickListener() {
+            @Override
+            public void onClick() {
+                dialog.dismiss();
+            }
+        });
+//        dialog.set
+        dialog.show();
     }
 
     private void pull() {

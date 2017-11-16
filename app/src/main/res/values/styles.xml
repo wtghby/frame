@@ -169,4 +169,17 @@
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowBackground">@color/half_transparent</item>
     </style>
+
+    <!-- 水平分割线的style -->
+    <style name="divider_horizontal">
+        <item name="android:background">@color/gray_f4f4f4</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/px1</item>
+    </style>
+
+    <style name="divider_vertical">
+        <item name="android:background">@color/gray_f4f4f4</item>
+        <item name="android:layout_width">@dimen/px1</item>
+    </style>
+
 </resources>

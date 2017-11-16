@@ -14,10 +14,16 @@
     <color name="line">#ffbcbcbc</color>
 
     <color name="background_new_tag">#ff0000</color>
-    <color name="text_new_tag">#ffffff</color>
+    <color name="white">#ffffff</color>
 
     <!-- 通用透明色 -->
     <color name="transparent">#00000000</color>
     <color name="half_transparent">#8e000000</color>
     <color name="half_transparent1">#3e000000</color>
+
+    <color name="common_line">#ffcccccc</color>
+    <color name="common_big_title_text">#ff222222</color>
+    <color name="black_565656">#565656</color>
+    <color name="gray_f4f4f4">#f4f4f4</color>
+    <color name="common_btn_white_bg_press">#ffd7d7db</color>
 </resources>
