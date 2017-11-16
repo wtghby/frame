@@ -1,5 +1,6 @@
 package com.conny.frame.api.service;
 
+import com.conny.frame.bean.ResultBean;
 import com.conny.frame.test.IpBean;
 
 import retrofit2.Call;
@@ -18,4 +19,7 @@ public interface FrameService {
 
     @GET("{type}")
     Call<IpBean> mass(@Path("type") String type, @Query("format") String format);
+
+    @GET
+    Call<ResultBean<IpBean>> listIp(@Query("page") int page, @Query("pageSize") int pageSize);
 }

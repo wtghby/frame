@@ -6,6 +6,7 @@
 
     <color name="background_app">#dedede</color>
 
+    <color name="common_toast_bg_color">#e5555555</color>
     <color name="background_list_back">#e3e3e3</color>
     <color name="background_list_front">#ffffff</color>
     <color name="text_title">#444444</color>
@@ -26,4 +27,7 @@
     <color name="black_565656">#565656</color>
     <color name="gray_f4f4f4">#f4f4f4</color>
     <color name="common_btn_white_bg_press">#ffd7d7db</color>
+    <color name="common_btn_red_bg_press">#ffc00400</color>
+    <color name="common_grey_bg_color">#ffeeeeee</color>
+    <color name="common_small_des_text">#ff999999</color>
 </resources>
