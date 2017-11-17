@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao' // apply plugin
+
 
 android {
     compileSdkVersion 25
@@ -6,7 +8,7 @@ android {
     defaultConfig {
         applicationId "com.conny.frame"
         minSdkVersion 16
-        targetSdkVersion 25
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
         multiDexEnabled true// dex突破65535的限制
@@ -27,7 +29,7 @@ android {
 
     buildTypes {
 
-        debug{
+        debug {
             minifyEnabled false
             signingConfig signingConfigs.debug
         }
@@ -39,6 +41,11 @@ android {
             signingConfig signingConfigs.release
         }
     }
+}
+
+greendao {
+    //版本号，升级时可配置
+    schemaVersion 1
 }
 
 dependencies {
@@ -59,6 +66,6 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     //logger
     compile 'com.orhanobut:logger:2.1.1'
-    //sugar orm
-    compile 'com.github.satyan:sugar:1.5'
+
+    compile 'org.greenrobot:greendao:3.2.2' // add library
 }
