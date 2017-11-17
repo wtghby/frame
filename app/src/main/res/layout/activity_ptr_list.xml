@@ -2,11 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
-<!--     The PullToRefreshListView replaces a standard ListView widget. -->
+    <!--     The PullToRefreshListView replaces a standard ListView widget. -->
 
-    <com.conny.library.pulltorefresh.PullToRefreshListView
+    <com.conny.library.pulltorefresh.pulltorefresh.PullToRefreshSwipeListView
         android:id="@+id/pull_refresh_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

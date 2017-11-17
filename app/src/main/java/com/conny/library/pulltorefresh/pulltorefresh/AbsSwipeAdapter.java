@@ -44,7 +44,7 @@ import retrofit2.Response;
  */
 public abstract class AbsSwipeAdapter<B, H> extends BaseAdapter implements
         StickyListHeadersAdapter {
-    private final int PAGE_SIZE = 20;
+    private final int PAGE_SIZE = 5;
     protected Context mContext;
     protected LayoutInflater mInflater;
 
@@ -248,10 +248,6 @@ public abstract class AbsSwipeAdapter<B, H> extends BaseAdapter implements
         }
     }
 
-    protected int computeItemHeight(View content) {
-        return 0;
-    }
-
     protected int getItemHeight() {
         return 0;
     }
@@ -333,19 +329,6 @@ public abstract class AbsSwipeAdapter<B, H> extends BaseAdapter implements
      */
     protected abstract H initHolder(View view);
 
-    /**
-     * 此方法必须设置是否到最后一页
-     *
-     * @param json
-     */
-    protected abstract void onSuccess(String json);
-
-    protected void onResponse() {
-
-    }
-
-    ;
-
     protected void onDataItemClick(int position, B bean) {
 
     }
@@ -382,26 +365,6 @@ public abstract class AbsSwipeAdapter<B, H> extends BaseAdapter implements
         mBeanList.addAll(list);
         initListView(listView);
     }
-
-//    public AbsSwipeAdapter(Context context,
-//                           PullToRefreshSwipeListView listView) {
-//        this(context);
-//        if (null == listView) {
-//            throw new NullPointerException("listview is null");
-//        }
-////        mUrl = url;
-////        if (param != null) {
-////            mParams = param;
-////            if (param.get("pageSize") == null) {
-////                mParams.put("pageSize", PAGE_SIZE);
-////            }
-////        } else {
-////            mParams = new RequestParams();
-////            mParams.put("pageSize", PAGE_SIZE);
-////        }
-////        mPageSize = (Integer) mParams.get("pageSize");
-//        initListView(listView);
-//    }
 
     /**
      * 初始化ListView,如果已经初始化将忽略
@@ -552,20 +515,7 @@ public abstract class AbsSwipeAdapter<B, H> extends BaseAdapter implements
     protected abstract Call<ResultBean<B>> initCall();
 
     @SuppressLint("HandlerLeak")
-    protected Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            if (STATE_UP_REFRESH == mCurrentState) {
-                mBeanList.clear();
-            }
-            if (msg.obj != null) {
-                onSuccess(msg.obj.toString());
-            } else {
-                addListData(null);
-                onResponse();
-            }
-        }
-    };
+    protected Handler mHandler = new Handler();
 
     /**
      * 向适配器添加数据,当网络请求完成的时候，调用这个函数，可以更新器状态和数据。

@@ -1,5 +1,6 @@
 package com.conny.frame;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,6 +10,7 @@ import com.conny.frame.material.BaseActivity;
 import com.conny.frame.material.dialog.CommonDialog;
 import com.conny.frame.test.FrameApi;
 import com.conny.frame.test.IpBean;
+import com.conny.frame.test.PullActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -72,8 +74,8 @@ public class MainActivity extends BaseActivity {
     }
 
     private void pull() {
-//        Intent intent = new Intent(this, PullToRefreshSwipeListActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this, PullActivity.class);
+        startActivity(intent);
     }
 
     private void req() {
