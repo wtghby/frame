@@ -10,6 +10,7 @@ import com.conny.frame.bean.ResultBean;
 import com.conny.frame.material.base.BaseHolder;
 import com.conny.library.pulltorefresh.pulltorefresh.AbsSwipeAdapter;
 import com.conny.library.pulltorefresh.pulltorefresh.PullToRefreshSwipeListView;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;

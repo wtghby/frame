@@ -3,6 +3,8 @@ package com.conny.frame.application;
 import android.app.Application;
 
 import com.conny.frame.material.utils.ResourcesUtil;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 
 /**
  * Desc:
@@ -18,5 +20,8 @@ public class LocalApplication extends Application {
         super.onCreate();
         APP = this;
         ResourcesUtil.init(getResources());
+
+        //初始化Logger
+        Logger.addLogAdapter(new AndroidLogAdapter());
     }
 }

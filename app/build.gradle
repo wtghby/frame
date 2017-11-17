@@ -58,4 +58,6 @@ dependencies {
     //glide
     compile 'com.github.bumptech.glide:glide:3.5.2'
     compile 'com.nineoldandroids:library:2.4.0'
+    //logger
+    compile 'com.orhanobut:logger:2.1.1'
 }
