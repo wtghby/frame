@@ -5,6 +5,7 @@ import android.app.Application;
 import com.conny.frame.material.utils.ResourcesUtil;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
+import com.orm.SugarContext;
 
 /**
  * Desc:
@@ -23,5 +24,13 @@ public class LocalApplication extends Application {
 
         //初始化Logger
         Logger.addLogAdapter(new AndroidLogAdapter());
+
+        SugarContext.init(this);
+    }
+
+    @Override
+    public void onTerminate() {
+        SugarContext.terminate();
+        super.onTerminate();
     }
 }

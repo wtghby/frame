@@ -59,4 +59,6 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     //logger
     compile 'com.orhanobut:logger:2.1.1'
+    //sugar orm
+    compile 'com.github.satyan:sugar:1.5'
 }

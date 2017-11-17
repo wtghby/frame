@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.conny.frame.bean.PersonBean;
 import com.conny.frame.material.base.BaseActivity;
 import com.conny.frame.material.dialog.CommonDialog;
 import com.conny.frame.test.LazyFragment;
@@ -18,6 +19,7 @@ import com.conny.library.slidingmenu.lib.SlidingMenu;
 import com.conny.frame.test.FrameApi;
 import com.conny.frame.test.IpBean;
 import com.conny.frame.test.PullActivity;
+import com.orm.SugarRecord;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,17 +91,35 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.click})
+    @OnClick({R.id.click, R.id.query})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.click:
 //                req();
 //                pull();
-                sliding();
+//                sliding();
 //                showDialog();
 //                showProgress(true);
+                save();
+                break;
+            case R.id.query:
+                query();
                 break;
         }
+    }
+
+    private void save() {
+        PersonBean person = new PersonBean();
+        person.name = "张三";
+        person.age = 22;
+        person.adderss = "sdsdasa";
+
+        person.save();
+    }
+
+    private void query() {
+        PersonBean person = SugarRecord.findById(PersonBean.class, 1);
+        mText.setText(person.name + "---" + person.age + "---" + person.adderss);
     }
 
     private void showDialog() {
