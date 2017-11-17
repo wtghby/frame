@@ -1,4 +1,4 @@
-package com.conny.frame.material.slidingmenu.lib;
+package com.conny.library.slidingmenu.lib;
 
 import android.content.Context;
 import android.graphics.Bitmap;

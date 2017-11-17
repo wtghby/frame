@@ -1,15 +1,14 @@
-package com.conny.frame.material.slidingmenu.lib.app;
+package com.conny.library.slidingmenu.lib.app;
 
-import android.app.ListActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.ListView;
 
-import com.conny.frame.material.slidingmenu.lib.SlidingMenu;
+import com.conny.library.slidingmenu.lib.SlidingMenu;
 
-public class SlidingListActivity extends ListActivity implements SlidingActivityBase {
+public class SlidingActivity extends Activity implements SlidingActivityBase {
 
 	private SlidingActivityHelper mHelper;
 
@@ -21,9 +20,6 @@ public class SlidingListActivity extends ListActivity implements SlidingActivity
 		super.onCreate(savedInstanceState);
 		mHelper = new SlidingActivityHelper(this);
 		mHelper.onCreate(savedInstanceState);
-		ListView listView = new ListView(this);
-		listView.setId(android.R.id.list);
-		setContentView(listView);
 	}
 
 	/* (non-Javadoc)
@@ -128,9 +124,8 @@ public class SlidingListActivity extends ListActivity implements SlidingActivity
 	public void showMenu() {
 		mHelper.showMenu();
 	}
-	
-	/*
-	 * (non-Javadoc)
+
+	/* (non-Javadoc)
 	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase#showSecondaryMenu()
 	 */
 	public void showSecondaryMenu() {

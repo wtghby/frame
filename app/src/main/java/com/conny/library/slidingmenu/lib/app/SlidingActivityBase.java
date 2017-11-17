@@ -1,9 +1,9 @@
-package com.conny.frame.material.slidingmenu.lib.app;
+package com.conny.library.slidingmenu.lib.app;
 
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
-import com.conny.frame.material.slidingmenu.lib.SlidingMenu;
+import com.conny.library.slidingmenu.lib.SlidingMenu;
 
 public interface SlidingActivityBase {
 	

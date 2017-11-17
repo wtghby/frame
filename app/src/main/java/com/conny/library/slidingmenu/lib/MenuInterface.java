@@ -1,4 +1,4 @@
-package com.conny.frame.material.slidingmenu.lib;
+package com.conny.library.slidingmenu.lib;
 
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;

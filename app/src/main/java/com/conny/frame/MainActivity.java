@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.conny.frame.material.BaseActivity;
 import com.conny.frame.material.dialog.CommonDialog;
-import com.conny.frame.material.slidingmenu.lib.SlidingMenu;
+import com.conny.library.slidingmenu.lib.SlidingMenu;
 import com.conny.frame.test.FrameApi;
 import com.conny.frame.test.IpBean;
 import com.conny.frame.test.PullActivity;
