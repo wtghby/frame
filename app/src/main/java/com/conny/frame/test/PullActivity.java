@@ -1,7 +1,7 @@
 package com.conny.frame.test;
 
 import com.conny.frame.R;
-import com.conny.frame.material.BaseActivity;
+import com.conny.frame.material.base.BaseActivity;
 import com.conny.library.pulltorefresh.pulltorefresh.PullToRefreshSwipeListView;
 
 import butterknife.BindView;

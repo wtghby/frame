@@ -1,18 +1,26 @@
 package com.conny.frame;
 
 import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.conny.frame.material.BaseActivity;
+import com.conny.frame.material.base.BaseActivity;
 import com.conny.frame.material.dialog.CommonDialog;
+import com.conny.frame.test.LazyFragment;
+import com.conny.library.lazy.LazyViewPager;
 import com.conny.library.slidingmenu.lib.SlidingMenu;
 import com.conny.frame.test.FrameApi;
 import com.conny.frame.test.IpBean;
 import com.conny.frame.test.PullActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -26,6 +34,8 @@ public class MainActivity extends BaseActivity {
     TextView mText;
     @BindView(R.id.image)
     ImageView mImage;
+    @BindView(R.id.pager)
+    LazyViewPager mPager;
 
     private SlidingMenu menu;
 
@@ -44,6 +54,39 @@ public class MainActivity extends BaseActivity {
         Glide.with(this)
                 .load(PIC)
                 .into(mImage);
+
+        LazyFragment f1 = new LazyFragment();
+        f1.setId(1);
+
+        LazyFragment f2 = new LazyFragment();
+        f2.setId(2);
+
+        List<Fragment> fragments = new ArrayList<>();
+        fragments.add(f1);
+        fragments.add(f2);
+
+        FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager(), fragments);
+        mPager.setAdapter(adapter);
+    }
+
+    class FragmentAdapter extends FragmentPagerAdapter {
+
+        private List<Fragment> fragments;
+
+        public FragmentAdapter(FragmentManager fm, List<Fragment> fs) {
+            super(fm);
+            fragments = fs;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return fragments == null ? null : fragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragments == null ? 0 : fragments.size();
+        }
     }
 
     @OnClick({R.id.click})
