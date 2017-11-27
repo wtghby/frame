@@ -10,22 +10,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.conny.frame.api.loading.ProgressHandler;
+import com.conny.frame.api.loading.ProgressListener;
 import com.conny.frame.bean.PersonBean;
 import com.conny.frame.material.base.BaseActivity;
 import com.conny.frame.material.dao.Dao;
 import com.conny.frame.material.dialog.CommonDialog;
+import com.conny.frame.test.FileApi;
 import com.conny.frame.test.FrameApi;
 import com.conny.frame.test.IpBean;
 import com.conny.frame.test.LazyFragment;
 import com.conny.frame.test.PullActivity;
 import com.conny.library.lazy.LazyViewPager;
 import com.conny.library.slidingmenu.lib.SlidingMenu;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -100,12 +105,34 @@ public class MainActivity extends BaseActivity {
 //                sliding();
 //                showDialog();
 //                showProgress(true);
-                save();
+//                save();
+                download();
                 break;
             case R.id.query:
                 query();
                 break;
         }
+    }
+
+    private void download() {
+        FileApi.download(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        }, new ProgressHandler() {
+            @Override
+            protected void onProgress(long progress, long total, boolean done) {
+                int s = (int) ((progress * 1.0 / total) * 100);
+                String t = s + "%  " + done;
+                mText.setText(t);
+            }
+        });
     }
 
     private void save() {
