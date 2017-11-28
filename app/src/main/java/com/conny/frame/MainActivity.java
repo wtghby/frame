@@ -17,6 +17,7 @@ import com.conny.frame.bean.PersonBean;
 import com.conny.frame.material.base.BaseActivity;
 import com.conny.frame.material.dao.Dao;
 import com.conny.frame.material.dialog.CommonDialog;
+import com.conny.frame.material.utils.ToastUtil;
 import com.conny.frame.test.FileApi;
 import com.conny.frame.material.dialog.FileLoadingDialog;
 import com.conny.frame.material.utils.LCountDownTimer;
@@ -133,20 +134,32 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+                ToastUtil.showCustomViewToast(getApplication(), "下载失败！");
             }
         }, new ProgressHandler() {
             @Override
             protected void onProgress(long progress, long total, boolean done) {
-                int s = (int) ((progress * 1.0 / total) * 100);
-                String t = s + "%  " + done;
-                mText.setText(t);
+                if (dialog != null) {
+                    dialog.updatePercent(progress, total);
+                    if (done && dialog.isShowing()) {
+                        dialog.dismiss();
+                        ToastUtil.showCustomViewToast(getApplication(), "下载完成！");
+                    }
+                }
+//                int s = (int) ((progress * 1.0 / total) * 100);
+//                String t = s + "%  " + done;
+//                mText.setText(t);
             }
         });
     }
 
+    FileLoadingDialog dialog;
+
     private void progress() {
-        FileLoadingDialog dialog = new FileLoadingDialog(this);
+        dialog = new FileLoadingDialog(this);
         dialog.setTitle("正在下载");
         dialog.setName("ass.apk");
         dialog.show();

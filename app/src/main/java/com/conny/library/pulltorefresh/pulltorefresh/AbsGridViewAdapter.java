@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.conny.frame.R;
+import com.conny.frame.bean.ResultBean;
 import com.conny.frame.material.utils.ToastUtil;
 import com.conny.library.pulltorefresh.stickylistheaders.StickyListHeadersAdapter;
 import com.conny.library.pulltorefresh.stickylistheaders.StickyListHeadersListView;
@@ -27,6 +28,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * @param <B> 数据对象bean
@@ -423,11 +428,47 @@ public abstract class AbsGridViewAdapter<B, H> extends BaseAdapter implements
         changeRequestStatus(STATE_UP_REFRESH);
     }
 
+    protected abstract Call<ResultBean<B>> initCall();
+
     /**
      * 向服务端请求数据
      */
     protected void doRequest() {
+        Call<ResultBean<B>> call = initCall();
+        makeCall(call);
+    }
 
+    protected final void makeCall(Call<ResultBean<B>> call) {
+        if (call != null) {
+            mCurrentPage++;
+            call.enqueue(new Callback<ResultBean<B>>() {
+                @Override
+                public void onResponse(Call<ResultBean<B>> call, Response<ResultBean<B>> response) {
+                    if (response != null && response.code() == 200) {
+                        ResultBean<B> result = response.body();
+                        if (result != null && result.errorCode == 0) {
+                            List<B> beans = result.rows;
+                            if (STATE_UP_REFRESH == mCurrentState) {
+                                mBeanList.clear();
+                            }
+                            addListData(beans);
+                        } else {
+                            mCurrentPage--;
+                            AbsGridViewAdapter.this.onFailure(-1, "error");
+                        }
+                    } else {
+                        mCurrentPage--;
+                        AbsGridViewAdapter.this.onFailure(-1, "error");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResultBean<B>> call, Throwable t) {
+                    mCurrentPage--;
+                    AbsGridViewAdapter.this.onFailure(-1, "error");
+                }
+            });
+        }
     }
 
     public boolean isNeedJsonObject() {
