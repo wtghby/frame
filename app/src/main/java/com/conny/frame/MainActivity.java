@@ -1,6 +1,7 @@
 package com.conny.frame;
 
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -17,6 +18,8 @@ import com.conny.frame.material.base.BaseActivity;
 import com.conny.frame.material.dao.Dao;
 import com.conny.frame.material.dialog.CommonDialog;
 import com.conny.frame.test.FileApi;
+import com.conny.frame.material.dialog.FileLoadingDialog;
+import com.conny.frame.material.utils.LCountDownTimer;
 import com.conny.frame.test.FrameApi;
 import com.conny.frame.test.IpBean;
 import com.conny.frame.test.LazyFragment;
@@ -26,7 +29,10 @@ import com.conny.library.slidingmenu.lib.SlidingMenu;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -107,6 +113,10 @@ public class MainActivity extends BaseActivity {
 //                showProgress(true);
 //                save();
                 download();
+//                save();
+//                countDown();
+//                date();
+                progress();
                 break;
             case R.id.query:
                 query();
@@ -133,6 +143,35 @@ public class MainActivity extends BaseActivity {
                 mText.setText(t);
             }
         });
+    }
+
+    private void progress() {
+        FileLoadingDialog dialog = new FileLoadingDialog(this);
+        dialog.setTitle("正在下载");
+        dialog.setName("ass.apk");
+        dialog.show();
+    }
+
+    private void date() {
+        Timer timer = new Timer();
+        long time = System.currentTimeMillis() + 1000 * 60;
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        countDown();
+                    }
+                });
+
+            }
+        }, new Date(time));
+    }
+
+    private void countDown() {
+        CountDown count = new CountDown(1000 * 60 * 5, 1000 * 60);
+        count.start();
     }
 
     private void save() {
@@ -227,5 +266,31 @@ public class MainActivity extends BaseActivity {
             }
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    class CountDown extends LCountDownTimer {
+        /**
+         * @param millisInFuture    The number of millis in the future from the call
+         * to {@link #start()} until the countdown is done and {@link #onFinish()}
+         * is called.
+         * @param countDownInterval The interval along the way to receive
+         * {@link #onTick(long)} callbacks.
+         */
+        private int times;
+
+        public CountDown(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+            times = 5;
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            mText.setText(String.valueOf(times--));
+        }
+
+        @Override
+        public void onFinish() {
+            mText.setText("end");
+        }
     }
 }
