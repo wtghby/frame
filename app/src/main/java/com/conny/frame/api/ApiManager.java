@@ -7,6 +7,10 @@ package com.conny.frame.api;
 
 public class ApiManager {
 
+    public static final int DEVELOP = 0;
+    public static final int TEST = 1;
+    public static final int CLUSTER = 2;
+
     //正式发版时需要置为true
     public static final boolean RELEASE = false;
 
@@ -16,6 +20,19 @@ public class ApiManager {
     private static final String API_CLUSTER_SERVER = "http://47.93.10.147:8080/tv/";
 
     public static String SERVER = API_CLUSTER_SERVER;
-//    public static String SERVER = API_DEVELOP_SERVER;
 
+    //    public static String SERVER = API_DEVELOP_SERVER;
+    static {
+        switch (Constant.SERVER) {
+            case DEVELOP:
+                SERVER = API_DEVELOP_SERVER;
+                break;
+            case TEST:
+                SERVER = API_TEST_SERVER;
+                break;
+            case CLUSTER:
+                SERVER = API_CLUSTER_SERVER;
+                break;
+        }
+    }
 }
